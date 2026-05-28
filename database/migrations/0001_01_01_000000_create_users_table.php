@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    const TABLE_NAME_ROLES = 'roles';
-    const TABLE_NAME_USERS = 'users';
-    const TABLE_NAME_USER_ROLES = 'user_roles';
-    const TABLE_NAME_PASSWORD_RESET_TOKENS = 'password_reset_tokens';
-    const TABLE_NAME_SESSIONS = 'sessions';
+    const TABLE_NAME_ROLES = 'ref_roles';
+    const TABLE_NAME_USERS = 'tbl_users';
+    const TABLE_NAME_USER_ROLES = 'tbl_user_roles';
+    const TABLE_NAME_PASSWORD_RESET_TOKENS = 'tbl_password_reset_tokens';
+    const TABLE_NAME_SESSIONS = 'tbl_sessions';
     /**
      * Run the migrations.
      */
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->foreign('primary_role')->references('role_id')->on(static::TABLE_NAME_ROLES)->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create(static::TABLE_NAME_USER_ROLES, function (Blueprint $table) {
@@ -50,7 +51,7 @@ return new class extends Migration
 
         Schema::create(static::TABLE_NAME_PASSWORD_RESET_TOKENS, function (Blueprint $table) {
             $table->string('email')->primary();
-            $table->string('token');
+            $table->string('token'); 
             $table->timestamp('created_at')->nullable();
         });
 
