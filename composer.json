@@ -18,10 +18,11 @@
     ],
     "require": {
         "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.6",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "specialtactics/l5-api": "^6.0.2",
-        "guzzlehttp/guzzle": "^7.6"
+        "symfony/property-access": "^7.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.5",

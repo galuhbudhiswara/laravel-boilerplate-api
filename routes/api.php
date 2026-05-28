@@ -29,8 +29,8 @@ $api->version('v1', ['middleware' => ['api']], function (Router $api) {
      * Authentication
      */
     $api->group(['prefix' => 'auth'], function (Router $api) {
-        $api->group(['prefix' => 'jwt'], function (Router $api) {
-            $api->get('/token', 'App\Http\Controllers\Auth\AuthController@token');
+        $api->group(['prefix' => 'login'], function (Router $api) {
+            $api->get('/token', 'App\Http\Controllers\Auth\AuthController@authenticate');
         });
     });
 
