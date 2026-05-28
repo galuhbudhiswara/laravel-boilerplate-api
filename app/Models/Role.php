@@ -9,6 +9,11 @@ class Role extends BaseModel
     use SoftDeletes;
 
     /**
+     * @var string Custom table name
+     */
+    protected $table = 'ref_roles';
+
+    /**
      * Role constants
      */
     public const ROLE_ADMIN = 'admin';
@@ -16,7 +21,7 @@ class Role extends BaseModel
     /**
      * @var int Auto increments integer key
      */
-    public $primaryKey = 'role_id';
+    public $primaryKey = 'id';
 
 
     /**

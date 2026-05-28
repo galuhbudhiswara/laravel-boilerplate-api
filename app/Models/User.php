@@ -27,9 +27,14 @@ class User extends BaseModel implements
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable, SoftDeletes;
 
     /**
+     * @var string 
+     */
+    protected $table = 'tbl_users';
+
+    /**
      * @var int Auto increments integer key
      */
-    public $primaryKey = 'user_id';
+    public $primaryKey = 'id';
 
     /**
      * @var array Relations to load implicitly by Restful controllers
@@ -80,7 +85,7 @@ class User extends BaseModel implements
     public function getValidationRules(): array
     {
         return [
-            'email' => 'email|max:255|unique:users',
+            'email' => 'email|max:255|unique:tbl_users',
             'name'  => 'required|min:3',
             'password' => 'required|min:6',
         ];
@@ -147,7 +152,7 @@ class User extends BaseModel implements
             'user' => [
                 'id' => $this->getKey(),
                 'name' => $this->name,
-                'primaryRole' => $this->primaryRole->name,
+                'primaryRole' => $this->primaryRole?->name ?? 'user', 
             ],
         ];
     }

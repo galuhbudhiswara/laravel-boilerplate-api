@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use App\Requests\RegisterRequest;
+use App\Http\Services\Auth\RegisterService;
 use Illuminate\Http\Request;
 use Dingo\Api\Http\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -36,7 +38,14 @@ trait AuthenticatorTrait
         return $this->respondWithToken($token);
     }
 
-   
+    public function register(RegisterRequest $request)
+    {
+        $user  = $this->registerService->register($request->validated());
+        $token = auth()->login($user);
+
+        return $this->respondWithToken($token);
+    }
+
     private function checkRequirement(Request $request): self
     {
         $this

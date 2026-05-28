@@ -30,6 +30,7 @@ $api->version('v1', ['middleware' => ['api']], function (Router $api) {
      */
     $api->group(['prefix' => 'auth'], function (Router $api) {
         $api->get('/login', 'App\Http\Controllers\Auth\AuthController@authenticate');
+        $api->get('/register', 'App\Http\Controllers\Auth\AuthController@register');
     });
 
     /*
