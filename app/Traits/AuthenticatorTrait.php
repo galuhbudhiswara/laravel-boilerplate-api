@@ -37,11 +37,12 @@ trait AuthenticatorTrait
     }
 
    
-    private function checkRequirement(Request $request): void
+    private function checkRequirement(Request $request): self
     {
         $this
-            ->checkPayload($request)
-            ;
+            ->checkPayload($request);
+
+        return $this;
     }
 
     private function checkPayload(Request $request): self
