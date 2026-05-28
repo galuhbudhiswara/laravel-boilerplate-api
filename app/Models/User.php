@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends BaseModel implements
@@ -23,7 +24,7 @@ class User extends BaseModel implements
     JWTSubject
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * @var int Auto increments integer key
